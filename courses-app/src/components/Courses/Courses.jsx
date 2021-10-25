@@ -1,72 +1,23 @@
-import { useState } from 'react';
 import CourseCard from './components/CourseCard';
 import SearchBar from './components/SearchBar';
 import Button from '../common/Button';
+import {
+	mockedAuthorsList,
+	mockedCoursesList,
+} from '../common/assets/mockedFiles';
+
+import { useState } from 'react';
+
 import './index.css';
 
-const mockedCoursesList = [
-	{
-		id: 'de5aaa59-90f5-4dbc-b8a9-aaf205c551ba',
-		title: 'JavaScript',
-		description: `Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the
-            1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived
-            not only five centuries, but also the leap into electronictypesetting, remaining essentially u
-            nchanged.`,
-		creationDate: '8/3/2021',
-		duration: 160,
-		authors: [
-			'27cc3006-e93a-4748-8ca8-73d06aa93b6d',
-			'f762978b-61eb-4096-812b-ebde22838167',
-		],
-	},
-	{
-		id: 'b5630fdd-7bf7-4d39-b75a-2b5906fd0916',
-		title: 'Angular',
-		description: `Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the
-            1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type
-            specimen book.`,
-		creationDate: '10/11/2020',
-		duration: 210,
-		authors: [
-			'df32994e-b23d-497c-9e4d-84e4dc02882f',
-			'095a1817-d45b-4ed7-9cf7-b2417bcbf748',
-		],
-	},
-];
-
-const mockedAuthorsList = [
-	{
-		id: '27cc3006-e93a-4748-8ca8-73d06aa93b6d',
-		name: 'Vasiliy Dobkin',
-	},
-	{
-		id: 'f762978b-61eb-4096-812b-ebde22838167',
-		name: 'Nicolas Kim',
-	},
-	{
-		id: 'df32994e-b23d-497c-9e4d-84e4dc02882f',
-		name: 'Anna Sidorenko',
-	},
-	{
-		id: '095a1817-d45b-4ed7-9cf7-b2417bcbf748',
-		name: 'Valentina Larina',
-	},
-];
-
-const Courses = () => {
+const Courses = ({ togglePage }) => {
 	const searchAbility = (inputValue) => {
 		setState(inputValue);
 		if (state.length <= 1) {
 			setArray(courseList);
 		}
 	};
+
 	const filterElements = () => {
 		setArray(
 			courseList.filter(
@@ -76,6 +27,7 @@ const Courses = () => {
 			)
 		);
 	};
+
 	const courseList = mockedCoursesList.map(
 		({ id, title, description, creationDate, duration, authors = [] }) => {
 			const autorNames = authors?.map(
@@ -94,8 +46,10 @@ const Courses = () => {
 			);
 		}
 	);
+
 	const [state, setState] = useState('');
 	const [array, setArray] = useState(courseList);
+
 	return (
 		<div className='Courses-wrap'>
 			<div className='settings'>
@@ -103,7 +57,7 @@ const Courses = () => {
 					searchAbility={searchAbility}
 					filterElements={filterElements}
 				/>
-				<Button text='Add new course' />
+				<Button text='Add new course' onClick={togglePage} />
 			</div>
 			<div className='cards-wrap'>{array}</div>
 		</div>

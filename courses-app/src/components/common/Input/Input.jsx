@@ -1,16 +1,16 @@
 import './index.css';
 
-const Input = ({ placeholder, labelText, onChange }) => (
-	<div>
+const Input = ({ placeholder, labelText, onChange, id }) => (
+	<div className='input-wrap'>
+		<label htmlFor={id}>{labelText}</label>
 		<input
 			placeholder={placeholder}
 			onChange={({ target }) => {
 				onChange(target.value);
 			}}
-			id='search'
+			id={id}
 			className='input'
 		/>
-		<label htmlFor='search'>{labelText}</label>
 	</div>
 );
 

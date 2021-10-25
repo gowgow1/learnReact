@@ -1,6 +1,7 @@
-import './index.css';
 import Logo from './components/Logo';
 import Button from '../common/Button';
+
+import './index.css';
 
 const Header = () => (
 	<div className='header'>

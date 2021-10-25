@@ -1,5 +1,6 @@
-import './index.css';
 import Button from '../../../common/Button';
+
+import './index.css';
 
 const CourseCards = ({
 	id,

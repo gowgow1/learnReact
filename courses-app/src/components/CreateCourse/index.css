@@ -1,0 +1,16 @@
+.create-course {
+    padding: 15px 20px;
+    border: 2px solid lightskyblue;
+}
+
+.top-handlers {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.text-aria {
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: 15px;
+}
