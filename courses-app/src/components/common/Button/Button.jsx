@@ -1,11 +1,9 @@
 import './index.css';
 
-const Button = ({ text, onClick }) => {
-	return (
-		<button onClick={onClick} className='button'>
-			{text}
-		</button>
-	);
-};
+const Button = ({ text, onClick }) => (
+	<button onClick={onClick} className='button'>
+		{text}
+	</button>
+);
 
 export default Button;
