@@ -1,0 +1,9 @@
+.button {
+    border-radius: 5px;
+    border: 1px solid gray;
+    background: transparent;
+}
+.button:hover {
+    border: 1px solid yellow;
+    background: rgba(23, 194, 186, 0.281);
+}
