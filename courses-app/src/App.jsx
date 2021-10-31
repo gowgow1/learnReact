@@ -1,21 +1,44 @@
 import { useState } from 'react';
+
 import Header from './components/Header';
 import Courses from './components/Courses';
 import CreateCourse from './components/CreateCourse';
 
+import { mockedAuthorsList, mockedCoursesList } from './constants';
+
 import './App.css';
+
 function App() {
-	const [newCoursePage, setnewCoursePage] = useState(false);
-	const togglePage = () => {
-		setnewCoursePage(!newCoursePage);
+	const [showCoursePage, toggleCoursePage] = useState(false);
+	const [coursesList, setCourseList] = useState(mockedCoursesList);
+	const [authorsList, setAuthorsList] = useState(mockedAuthorsList);
+
+	const updateAuthors = (newAuthor) => {
+		setAuthorsList([...authorsList, newAuthor]);
 	};
+
+	const updateCourses = (newCourse) => {
+		setCourseList([...coursesList, newCourse]);
+		togglePage();
+	};
+
+	const togglePage = () => toggleCoursePage(!showCoursePage);
+
 	return (
 		<div className='AppWrap'>
 			<Header />
-			{newCoursePage ? (
-				<CreateCourse togglePage={togglePage} />
+			{showCoursePage ? (
+				<CreateCourse
+					initialAuthors={authorsList}
+					updateAuthors={updateAuthors}
+					updateCourses={updateCourses}
+				/>
 			) : (
-				<Courses togglePage={togglePage} />
+				<Courses
+					initialCourseList={coursesList}
+					initialAuthors={authorsList}
+					togglePage={togglePage}
+				/>
 			)}
 		</div>
 	);
