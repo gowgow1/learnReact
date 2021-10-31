@@ -1,0 +1,26 @@
+.registration {
+	padding: 5px 20px;
+	border: 2px solid rgb(255, 136, 255);
+	text-align: center;
+}
+
+.registration-form {
+	max-width: 450px;
+	margin: 0 auto;
+}
+
+.registration input {
+	border: 2px solid rgb(255, 196, 0);
+	margin-bottom: 10px;
+}
+
+.registration label {
+	margin-bottom: 5px;
+	text-align: left;
+}
+
+.registration .button {
+	border-radius: 0;
+	padding: 7px 20px;
+	border: 2px solid rgb(161, 22, 161)
+}

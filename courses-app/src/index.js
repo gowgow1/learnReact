@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Redirect } from 'react-router-dom';
 import App from './App';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<Router basename='/'>
+			<Redirect to='/registration' />
+			<App />
+		</Router>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
