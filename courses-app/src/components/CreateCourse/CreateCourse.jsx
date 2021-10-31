@@ -4,6 +4,8 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 
 import genId from '../../helpers/genId';
+import timeFormat from '../../helpers/timeFormat';
+
 import './index.css';
 
 const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
@@ -74,6 +76,18 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 						onChange={handleInputName}
 					/>
 					<Button text='Create Author' onClick={update} />
+					<h2>Duration</h2>
+					<Input
+						placeholder='Enter duration in minutes...'
+						labelText='Duration'
+						id='duration'
+						onChange={handleInputName}
+						name='duration'
+						type='number'
+					/>
+					<div className='duration-bar'>
+						Duration: <span>{timeFormat(inputValues.duration)}</span> hours
+					</div>
 				</div>
 				<div className='author-choose'>
 					<h2> Authors </h2>
@@ -88,8 +102,8 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 											...currentAuthors,
 											authors.find((item) => item.id === id),
 										]);
-										setAuthors(authors.filter((item) => item.id !== id));
 
+										setAuthors(authors.filter((item) => item.id !== id));
 										event.preventDefault();
 									}}
 								/>

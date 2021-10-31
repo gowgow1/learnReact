@@ -25,7 +25,7 @@ function App() {
 	const togglePage = () => toggleCoursePage(!showCoursePage);
 
 	return (
-		<div className='AppWrap'>
+		<div className='app-wrap'>
 			<Header />
 			{showCoursePage ? (
 				<CreateCourse
@@ -35,8 +35,8 @@ function App() {
 				/>
 			) : (
 				<Courses
-					initialCourseList={coursesList}
-					initialAuthors={authorsList}
+					initCourses={coursesList}
+					initAuthors={authorsList}
 					togglePage={togglePage}
 				/>
 			)}

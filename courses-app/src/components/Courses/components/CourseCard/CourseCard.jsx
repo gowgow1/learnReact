@@ -1,4 +1,5 @@
 import Button from '../../../common/Button';
+import timeFormat from '../../../../helpers/timeFormat';
 
 import './index.css';
 
@@ -22,7 +23,7 @@ const CourseCards = ({
 			</div>
 			<div className='duration'>
 				<strong>Duration: </strong>
-				{duration}
+				{timeFormat(duration)}
 			</div>
 			<div className='created'>
 				<strong>Created: </strong>
