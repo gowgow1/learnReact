@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import CourseCard from './components/CourseCard';
 import SearchBar from './components/SearchBar';
@@ -6,9 +7,14 @@ import Button from '../common/Button';
 
 import './index.css';
 
-const Courses = ({ togglePage, initCourses, initAuthors }) => {
+const Courses = ({ initCourses, initAuthors }) => {
 	const [InputValue, setInputValue] = useState('');
 	const [courses, setCourses] = useState(initCourses);
+	const history = useHistory();
+
+	const redirectToAddCourse = () => {
+		history.push('/courses/add');
+	};
 
 	const searchAbility = ({ target: { value } }) => {
 		setInputValue(value);
@@ -20,7 +26,7 @@ const Courses = ({ togglePage, initCourses, initAuthors }) => {
 
 	const searchElements = () => {
 		setCourses(
-			courses.filter(
+			courses?.filter(
 				({ title, id }) =>
 					title.toLowerCase().includes(InputValue.toLowerCase()) ||
 					id.includes(InputValue)
@@ -35,7 +41,7 @@ const Courses = ({ togglePage, initCourses, initAuthors }) => {
 					searchAbility={searchAbility}
 					searchElements={searchElements}
 				/>
-				<Button text='Add new course' onClick={togglePage} />
+				<Button text='Add new course' onClick={redirectToAddCourse} />
 			</div>
 			<div className='cards-wrap'>
 				{courses.map((course) => {

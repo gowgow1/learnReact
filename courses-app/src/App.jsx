@@ -1,17 +1,22 @@
+import {
+	Route,
+	BrowserRouter,
+	Redirect,
+	useHistory,
+	Switch,
+} from 'react-router-dom';
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
+import Login from './components/Login';
 import Header from './components/Header';
 import Courses from './components/Courses';
-import CreateCourse from './components/CreateCourse';
 import Registration from './components/Registration';
+import CreateCourse from './components/CreateCourse';
 
 import { mockedAuthorsList, mockedCoursesList } from './constants';
 import './App.css';
 
 function App() {
-	const [showCoursePage, toggleCoursePage] = useState(false);
-	const [isLogin, setLogin] = useState(false);
 	const [coursesList, setCourseList] = useState(mockedCoursesList);
 	const [authorsList, setAuthorsList] = useState(mockedAuthorsList);
 
@@ -21,36 +26,29 @@ function App() {
 
 	const updateCourses = (newCourse) => {
 		setCourseList([...coursesList, newCourse]);
-		togglePage();
 	};
 
-	const togglePage = () => toggleCoursePage(!showCoursePage);
-
 	return (
-		<div className='app-wrap'>
-			<Header />
-			<Router>
-				<Redirect to='/registration' />
-				<Route exact path='/registration'>
-					<Registration />
-				</Route>
-				<Route path='/courses'>
-					{showCoursePage ? (
+		<BrowserRouter>
+			<div className='app-wrap'>
+				<Header />
+				<Route path='/login' component={Login} />
+				<Route path='/registration' component={Registration} />
+				<Switch>
+					<Route path='/courses/add'>
 						<CreateCourse
 							initialAuthors={authorsList}
 							updateAuthors={updateAuthors}
 							updateCourses={updateCourses}
 						/>
-					) : (
-						<Courses
-							initCourses={coursesList}
-							initAuthors={authorsList}
-							togglePage={togglePage}
-						/>
-					)}
-				</Route>
-			</Router>
-		</div>
+					</Route>
+					<Route path='/courses'>
+						<Courses initCourses={coursesList} initAuthors={authorsList} />
+					</Route>
+				</Switch>
+				<Redirect from='/' to='/login' />
+			</div>
+		</BrowserRouter>
 	);
 }
 export default App;
