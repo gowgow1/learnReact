@@ -1,10 +1,4 @@
-import {
-	Route,
-	BrowserRouter,
-	Redirect,
-	useHistory,
-	Switch,
-} from 'react-router-dom';
+import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { useState } from 'react';
 
 import Login from './components/Login';
@@ -12,6 +6,7 @@ import Header from './components/Header';
 import Courses from './components/Courses';
 import Registration from './components/Registration';
 import CreateCourse from './components/CreateCourse';
+import CourseInfo from './components/CourseInfo/CourseInfo';
 
 import { mockedAuthorsList, mockedCoursesList } from './constants';
 import './App.css';
@@ -42,6 +37,12 @@ function App() {
 							updateCourses={updateCourses}
 						/>
 					</Route>
+					<Route
+						path='/courses/:id'
+						children={
+							<CourseInfo coursesList={coursesList} authorsList={authorsList} />
+						}
+					/>
 					<Route path='/courses'>
 						<Courses initCourses={coursesList} initAuthors={authorsList} />
 					</Route>

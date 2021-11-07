@@ -18,10 +18,7 @@ const Courses = ({ initCourses, initAuthors }) => {
 
 	const searchAbility = ({ target: { value } }) => {
 		setInputValue(value);
-
-		if (InputValue.length <= 1) {
-			setCourses(initCourses);
-		}
+		InputValue.length <= 1 && setCourses(initCourses);
 	};
 
 	const searchElements = () => {
@@ -54,6 +51,7 @@ const Courses = ({ initCourses, initAuthors }) => {
 					return (
 						<CourseCard
 							key={id}
+							id={id}
 							title={title}
 							description={description}
 							author={autorNames}
