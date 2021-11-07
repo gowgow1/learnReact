@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Input from '../common/Input';
 import Button from '../common/Button';
@@ -12,6 +14,7 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 	const [inputValues, setValues] = useState({});
 	const [authors, setAuthors] = useState(initialAuthors);
 	const [currentAuthors, setCurrentAuthors] = useState([]);
+	const history = useHistory();
 
 	const handleInputName = ({ target }) => {
 		setValues({
@@ -32,6 +35,18 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 		event.preventDefault();
 	};
 
+	const createCourse = (event) => {
+		event.preventDefault();
+		const date = new Date();
+		updateCourses({
+			...inputValues,
+			id: genId(),
+			creationDate: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+			authors: [...currentAuthors.map((item) => item.id)],
+		});
+		history.push('/courses');
+	};
+
 	return (
 		<form className='create-course'>
 			<div className='control'>
@@ -42,19 +57,7 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 					onChange={handleInputName}
 					name='title'
 				/>
-				<Button
-					text='Create course'
-					onClick={(event) => {
-						const date = new Date();
-						updateCourses({
-							...inputValues,
-							id: genId(),
-							creationDate: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-							authors: [...currentAuthors.map((item) => item.id)],
-						});
-						event.preventDefault();
-					}}
-				/>
+				<Button text='Create course' onClick={createCourse} />
 			</div>
 			<label htmlFor='ariaText'>Description</label>
 			<textarea
@@ -140,6 +143,12 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 			</div>
 		</form>
 	);
+};
+
+CreateCourse.propTypes = {
+	initialAuthors: PropTypes.array,
+	updateAuthors: PropTypes.func,
+	updateCourses: PropTypes.func,
 };
 
 export default CreateCourse;
