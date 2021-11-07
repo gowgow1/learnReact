@@ -7,8 +7,8 @@ import Input from '../common/Input';
 import Service from '../../services/services';
 import './index.css';
 
-const Login = () => {
-	let service = new Service(); //ServiceApi
+const Login = ({ setUser }) => {
+	let service = new Service(); //API for BE req
 	let history = useHistory();
 	const [inputsValue, setValues] = useState({});
 
@@ -24,9 +24,16 @@ const Login = () => {
 		let { email = '', password = '' } = inputsValue;
 		const result = service.userLogin({ email, password });
 
-		result.then((res) =>
-			res.successful ? history.push('/courses') : alert('Invalid data')
-		);
+		result.then((res) => {
+			if (res.successful) {
+				localStorage.setItem('token', res.result);
+				localStorage.setItem('name', res.user.name);
+				setUser({ name: res.user.name, token: res.result });
+				history.push('/courses');
+			} else {
+				alert('Invalid data');
+			}
+		});
 	};
 
 	return (

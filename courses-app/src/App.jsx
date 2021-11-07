@@ -14,6 +14,10 @@ import './App.css';
 function App() {
 	const [coursesList, setCourseList] = useState(mockedCoursesList);
 	const [authorsList, setAuthorsList] = useState(mockedAuthorsList);
+	const [isUser, setUser] = useState({
+		token: localStorage.getItem('token'),
+		name: localStorage.getItem('name'),
+	});
 
 	const updateAuthors = (newAuthor) => {
 		setAuthorsList([...authorsList, newAuthor]);
@@ -26,8 +30,10 @@ function App() {
 	return (
 		<BrowserRouter>
 			<div className='app-wrap'>
-				<Header />
-				<Route path='/login' component={Login} />
+				<Header isUser={isUser} setUser={setUser} />
+				<Route path='/login'>
+					<Login isUser={isUser} setUser={setUser} />
+				</Route>
 				<Route path='/registration' component={Registration} />
 				<Switch>
 					<Route path='/courses/add'>
@@ -47,7 +53,7 @@ function App() {
 						<Courses initCourses={coursesList} initAuthors={authorsList} />
 					</Route>
 				</Switch>
-				<Redirect from='/' to='/login' />
+				<Redirect from='/' to={isUser.token ? '/courses' : '/login'} />
 			</div>
 		</BrowserRouter>
 	);
