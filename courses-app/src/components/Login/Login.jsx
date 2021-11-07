@@ -1,5 +1,6 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import { PropTypes } from 'prop-types';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -66,6 +67,10 @@ const Login = ({ setUser }) => {
 			</form>
 		</div>
 	);
+};
+
+Login.propTypes = {
+	setUser: PropTypes.func,
 };
 
 export default Login;

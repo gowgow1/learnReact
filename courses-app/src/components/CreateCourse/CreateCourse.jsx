@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Input from '../common/Input';
 import Button from '../common/Button';
@@ -142,6 +143,12 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 			</div>
 		</form>
 	);
+};
+
+CreateCourse.propTypes = {
+	initialAuthors: PropTypes.array,
+	updateAuthors: PropTypes.func,
+	updateCourses: PropTypes.func,
 };
 
 export default CreateCourse;
