@@ -1,2 +1,1 @@
-import CourseCards from './CourseCard';
-export default CourseCards;
+export { default } from './CourseCard';

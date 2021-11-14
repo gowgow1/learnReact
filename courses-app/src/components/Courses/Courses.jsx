@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getCourses, getAuthors } from '../../store/selectors';
 
 import CourseCard from './components/CourseCard';
 import SearchBar from './components/SearchBar';
@@ -6,21 +9,28 @@ import Button from '../common/Button';
 
 import './index.css';
 
-const Courses = ({ togglePage, initCourses, initAuthors }) => {
+const Courses = () => {
 	const [InputValue, setInputValue] = useState('');
-	const [courses, setCourses] = useState(initCourses);
+	const coursesList = useSelector(getCourses);
+	const authorsList = useSelector(getAuthors);
+	const history = useHistory();
+	const redirectToAddCourse = () => {
+		history.push('/courses/add');
+	};
+	const [filtredCourses, setCourses] = useState(coursesList);
+
+	useEffect(() => {
+		setCourses(coursesList);
+	}, [coursesList]);
 
 	const searchAbility = ({ target: { value } }) => {
 		setInputValue(value);
-
-		if (InputValue.length <= 1) {
-			setCourses(initCourses);
-		}
+		InputValue.length <= 1 && setCourses(coursesList);
 	};
 
 	const searchElements = () => {
 		setCourses(
-			courses.filter(
+			coursesList.filter(
 				({ title, id }) =>
 					title.toLowerCase().includes(InputValue.toLowerCase()) ||
 					id.includes(InputValue)
@@ -35,19 +45,20 @@ const Courses = ({ togglePage, initCourses, initAuthors }) => {
 					searchAbility={searchAbility}
 					searchElements={searchElements}
 				/>
-				<Button text='Add new course' onClick={togglePage} />
+				<Button text='Add new course' onClick={redirectToAddCourse} />
 			</div>
 			<div className='cards-wrap'>
-				{courses.map((course) => {
+				{filtredCourses.map((course) => {
 					const { id, title, description, creationDate, duration, authors } =
 						course;
 					const autorNames = authors?.map(
-						(id) => initAuthors?.find((item) => item?.id === id)?.name
+						(id) => authorsList?.find((item) => item?.id === id)?.name
 					);
 
 					return (
 						<CourseCard
 							key={id}
+							id={id}
 							title={title}
 							description={description}
 							author={autorNames}
