@@ -1,10 +1,15 @@
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
 import timeFormat from '../../helpers/timeFormat';
+import { getAuthors, getCourses } from '../../store/selectors';
 
 import './index.css';
 
-const CourseInfo = ({ coursesList, authorsList }) => {
+const CourseInfo = () => {
+	const coursesList = useSelector(getCourses);
+	const authorsList = useSelector(getAuthors);
+
 	const params = useParams();
 	const { title, description, creationDate, duration, authors } =
 		coursesList.find(({ id }) => id === params.id);

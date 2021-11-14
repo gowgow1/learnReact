@@ -24,12 +24,15 @@
 .created {
 	margin-bottom: 15px;
 }
-
-.card .button {
-	border: 3px solid plum;
+.btn-wrap {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	row-gap: 5px;
+	column-gap: 5px;
+}
+.btn-wrap .button {
+	border: 3px solid plum;
 	padding: 5px 25px;
-	margin: 0 auto;
 }

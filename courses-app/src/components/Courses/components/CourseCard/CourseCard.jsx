@@ -3,6 +3,8 @@ import timeFormat from '../../../../helpers/timeFormat';
 
 import './index.css';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { deleteCourse } from '../../../../store/courses/actionCreators';
 
 const CourseCards = ({
 	id,
@@ -14,6 +16,12 @@ const CourseCards = ({
 }) => {
 	const history = useHistory();
 	const onClick = () => history.push(`/courses/${id}`);
+	const dispatch = useDispatch();
+
+	const onDelete = () => {
+		dispatch(deleteCourse(id));
+	};
+	const onEdit = () => {}; //tasks of next hw
 
 	return (
 		<div className='card'>
@@ -34,8 +42,10 @@ const CourseCards = ({
 					<strong>Created: </strong>
 					{created}
 				</div>
-				<div className='show-btn-wrap'>
+				<div className='btn-wrap'>
 					<Button text='Show course' onClick={onClick} />
+					<Button text='E' onClick={onEdit} />
+					<Button text='D' onClick={onDelete} />
 				</div>
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -7,14 +7,24 @@ import Button from '../common/Button';
 
 import genId from '../../helpers/genId';
 import timeFormat from '../../helpers/timeFormat';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthors } from '../../store/selectors';
+import { addAuthor } from '../../store/authors/actionCreators';
+import { addCourse } from '../../store/courses/actionCreators';
 
 import './index.css';
 
-const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
+const CreateCourse = () => {
+	const dispatch = useDispatch();
+	const initialAuthors = useSelector(getAuthors);
 	const [inputValues, setValues] = useState({});
 	const [authors, setAuthors] = useState(initialAuthors);
-	const [currentAuthors, setCurrentAuthors] = useState([]);
+	const [currentAuthors, setChoosenAuthors] = useState([]);
 	const history = useHistory();
+
+	useEffect(() => {
+		setAuthors(initialAuthors);
+	}, [initialAuthors]);
 
 	const handleInputName = ({ target }) => {
 		setValues({
@@ -23,28 +33,44 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 		});
 	};
 
-	const update = (event) => {
+	const updateAuthors = (event) => {
 		const newAutor = {
 			name: inputValues.authorInput,
 			id: genId(),
 		};
-
-		updateAuthors(newAutor);
-		setAuthors([...authors, newAutor]);
-
+		dispatch(addAuthor(newAutor));
 		event.preventDefault();
 	};
 
-	const createCourse = (event) => {
+	const updateCourses = (event) => {
 		event.preventDefault();
 		const date = new Date();
-		updateCourses({
-			...inputValues,
-			id: genId(),
-			creationDate: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-			authors: [...currentAuthors.map((item) => item.id)],
-		});
+		dispatch(
+			addCourse({
+				...inputValues,
+				id: genId(),
+				creationDate: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+				authors: [...currentAuthors.map((item) => item.id)],
+			})
+		);
 		history.push('/courses');
+	};
+
+	const onAddAuthor = (event, id) => {
+		setChoosenAuthors([
+			...currentAuthors,
+			authors.find((item) => item.id === id),
+		]);
+
+		setAuthors(authors.filter((item) => item.id !== id));
+		event.preventDefault();
+	};
+
+	const onRemoveAuthor = (event, id) => {
+		setAuthors([...authors, currentAuthors.find((item) => item.id === id)]);
+		setChoosenAuthors(currentAuthors.filter((item) => item.id !== id));
+
+		event.preventDefault();
 	};
 
 	return (
@@ -57,7 +83,7 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 					onChange={handleInputName}
 					name='title'
 				/>
-				<Button text='Create course' onClick={createCourse} />
+				<Button text='Create course' onClick={updateCourses} />
 			</div>
 			<label htmlFor='ariaText'>Description</label>
 			<textarea
@@ -78,7 +104,7 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 						name='authorInput'
 						onChange={handleInputName}
 					/>
-					<Button text='Create Author' onClick={update} />
+					<Button text='Create Author' onClick={updateAuthors} />
 					<h2>Duration</h2>
 					<Input
 						placeholder='Enter duration in minutes...'
@@ -100,15 +126,7 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 								<div>{name}</div>
 								<Button
 									text='Add author'
-									onClick={(event) => {
-										setCurrentAuthors([
-											...currentAuthors,
-											authors.find((item) => item.id === id),
-										]);
-
-										setAuthors(authors.filter((item) => item.id !== id));
-										event.preventDefault();
-									}}
+									onClick={(event) => onAddAuthor(event, id)}
 								/>
 							</li>
 						))}
@@ -121,17 +139,7 @@ const CreateCourse = ({ initialAuthors, updateAuthors, updateCourses }) => {
 									<div>{name}</div>
 									<Button
 										text='Delete Author'
-										onClick={(event) => {
-											setAuthors([
-												...authors,
-												currentAuthors.find((item) => item.id === id),
-											]);
-											setCurrentAuthors(
-												currentAuthors.filter((item) => item.id !== id)
-											);
-
-											event.preventDefault();
-										}}
+										onClick={(event) => onRemoveAuthor(event, id)}
 									/>
 								</li>
 							))}

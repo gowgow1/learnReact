@@ -5,12 +5,15 @@ import { PropTypes } from 'prop-types';
 import Button from '../common/Button';
 import Input from '../common/Input';
 
-import Service from '../../services/services';
-import './index.css';
+import { service } from '../../services/services';
+import { useDispatch } from 'react-redux';
 
-const Login = ({ setUser }) => {
-	let service = new Service(); //API for BE req
-	let history = useHistory();
+import './index.css';
+import { loginUser } from '../../store/user/actionCreators';
+
+const Login = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
 	const [inputsValue, setValues] = useState({});
 
 	const handleInputName = ({ target }) => {
@@ -20,21 +23,22 @@ const Login = ({ setUser }) => {
 		});
 	};
 
-	const onSubmit = (event) => {
+	const onSubmit = async (event) => {
 		event.preventDefault();
-		let { email = '', password = '' } = inputsValue;
-		const result = service.userLogin({ email, password });
-
-		result.then((res) => {
-			if (res.successful) {
-				localStorage.setItem('token', res.result);
-				localStorage.setItem('name', res.user.name);
-				setUser({ name: res.user.name, token: res.result });
-				history.push('/courses');
-			} else {
-				alert('Invalid data');
-			}
+		const { email = '', password = '' } = inputsValue;
+		const { successful, result, user } = await service.userLogin({
+			email,
+			password,
 		});
+
+		if (successful) {
+			dispatch(loginUser(result, user));
+			localStorage.setItem('token', result);
+			localStorage.setItem('name', user.name);
+			history.push('/courses');
+		} else {
+			alert('Invalid data');
+		}
 	};
 
 	return (
