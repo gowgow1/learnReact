@@ -3,8 +3,9 @@ import timeFormat from '../../../../helpers/timeFormat';
 
 import './index.css';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { deleteCourse } from '../../../../store/courses/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../../../store/selectors';
+import { asynDeleteCourse } from '../../../../store/courses/thunk';
 
 const CourseCards = ({
 	id,
@@ -15,13 +16,14 @@ const CourseCards = ({
 	created,
 }) => {
 	const history = useHistory();
-	const onClick = () => history.push(`/courses/${id}`);
 	const dispatch = useDispatch();
+	const { role, token } = useSelector(getUser);
 
-	const onDelete = () => {
-		dispatch(deleteCourse(id));
-	};
-	const onEdit = () => {}; //tasks of next hw
+	const toCoursesPage = () => history.push(`/courses/${id}`);
+
+	const onDelete = () => dispatch(asynDeleteCourse(id, token));
+
+	const onEdit = () => history.push(`/courses/update/${id}`);
 
 	return (
 		<div className='card'>
@@ -43,9 +45,9 @@ const CourseCards = ({
 					{created}
 				</div>
 				<div className='btn-wrap'>
-					<Button text='Show course' onClick={onClick} />
-					<Button text='E' onClick={onEdit} />
-					<Button text='D' onClick={onDelete} />
+					<Button text='Show course' onClick={toCoursesPage} />
+					{role === 'admin' && <Button text='E' onClick={onEdit} />}
+					{role === 'admin' && <Button text='D' onClick={onDelete} />}
 				</div>
 			</div>
 		</div>

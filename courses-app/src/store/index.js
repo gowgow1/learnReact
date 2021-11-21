@@ -1,5 +1,6 @@
-import { createStore, combineReducers } from 'redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 import courses from './courses/reducer';
 import authors from './authors/reducer';
 import user from './user/reducer';
@@ -10,4 +11,7 @@ const reducer = combineReducers({
 	user,
 });
 
-export const store = createStore(reducer, devToolsEnhancer());
+export const store = createStore(
+	reducer,
+	composeWithDevTools(applyMiddleware(thunk))
+);

@@ -18,6 +18,7 @@ const Header = () => {
 		window.localStorage.clear();
 		history.push('/login');
 	};
+
 	return (
 		<div className='header'>
 			<Logo />

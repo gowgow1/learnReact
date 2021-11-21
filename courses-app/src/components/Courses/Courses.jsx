@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getCourses, getAuthors } from '../../store/selectors';
+import { getCourses, getAuthors, getUser } from '../../store/selectors';
 
 import CourseCard from './components/CourseCard';
 import SearchBar from './components/SearchBar';
@@ -13,6 +13,7 @@ const Courses = () => {
 	const [InputValue, setInputValue] = useState('');
 	const coursesList = useSelector(getCourses);
 	const authorsList = useSelector(getAuthors);
+	const { role } = useSelector(getUser);
 	const history = useHistory();
 	const redirectToAddCourse = () => {
 		history.push('/courses/add');
@@ -45,7 +46,9 @@ const Courses = () => {
 					searchAbility={searchAbility}
 					searchElements={searchElements}
 				/>
-				<Button text='Add new course' onClick={redirectToAddCourse} />
+				{role === 'admin' ? (
+					<Button text='Add new course' onClick={redirectToAddCourse} />
+				) : null}
 			</div>
 			<div className='cards-wrap'>
 				{filtredCourses.map((course) => {

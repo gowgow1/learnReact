@@ -7,7 +7,7 @@ const Input = ({
 	id,
 	name,
 	type = 'text',
-	required,
+	value,
 }) => (
 	<div className='input-wrap'>
 		<label htmlFor={id}>{labelText}</label>
@@ -18,6 +18,7 @@ const Input = ({
 			className='input'
 			name={name}
 			type={type}
+			value={value}
 		/>
 	</div>
 );

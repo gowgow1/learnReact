@@ -1,15 +1,13 @@
 import * as actions from './actionTypes';
 
-const unLogin = { isAuth: false, name: '', email: '', token: '' };
+const def = { isAuth: '', name: '', email: '', token: '', role: '' };
 
-export default function user(state = unLogin, { type, payload }) {
+export default function user(state = def, { type, payload }) {
 	switch (type) {
-		case actions.SET_USER:
-			return payload.user;
 		case actions.DELETE_USER:
-			return unLogin;
+			return def;
 		case actions.USER_LOGIN:
-			return { ...state, ...payload };
+			return { ...payload };
 		default:
 			return state;
 	}

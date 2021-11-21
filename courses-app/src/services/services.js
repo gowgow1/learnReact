@@ -1,51 +1,52 @@
 class Service {
 	_apiBase = 'http://localhost:3000';
 
-	default(body) {
-		if (body) {
-			return {
-				body: JSON.stringify(body),
-				headers: { 'Content-Type': 'application/json' },
-			};
-		} else {
-			return { headers: { 'Content-Type': 'application/json' } };
-		}
+	async createApi(method, url, body = null, authorization = null) {
+		const response = await fetch(this._apiBase + url, {
+			method,
+			body: body ? JSON.stringify(body) : null,
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: authorization,
+			},
+		});
+		return response.json();
 	}
 
 	async userLogin(body) {
-		const response = await fetch(this._apiBase + '/login', {
-			method: 'POST',
-			...this.default(body),
-		});
-
-		return response.json();
+		return this.createApi('POST', '/login', body);
 	}
 
 	async userRegistration(body) {
-		const response = await fetch(this._apiBase + '/register', {
-			method: 'POST',
-			...this.default(body),
-		});
-
-		return response.json();
+		return this.createApi('POST', '/register', body);
 	}
 
 	async getCourses() {
-		const response = await fetch(this._apiBase + '/courses/all', {
-			method: 'GET',
-			...this.default(),
-		});
+		return this.createApi('GET', '/courses/all');
+	}
 
-		return response.json();
+	async deleteCourse(id, token) {
+		return this.createApi('DELETE', `/courses/${id}`, null, token);
 	}
 
 	async getAuthors() {
-		const response = await fetch(this._apiBase + '/authors/all', {
-			method: 'GET',
-			...this.default(),
-		});
+		return this.createApi('GET', `/authors/all`);
+	}
 
-		return response.json();
+	async getUser(token) {
+		return this.createApi('GET', '/users/me', null, token);
+	}
+
+	async updateCourse(id, body, token) {
+		return this.createApi('PUT', `/courses/${id}`, body, token);
+	}
+
+	async addCourse(body, token) {
+		return this.createApi('POST', `/courses/add`, body, token);
+	}
+
+	async addAuthor(body, token) {
+		return this.createApi('POST', `/authors/add`, body, token);
 	}
 }
 

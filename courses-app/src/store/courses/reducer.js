@@ -8,6 +8,10 @@ export default function courses(state = [], { type, payload }) {
 			return [...state, payload.item];
 		case actions.DELETE_COURSE:
 			return state.filter((item) => item.id !== payload.id);
+		case actions.UPDATE_COURSE:
+			return state.map((item) =>
+				item.id === payload.item.id ? payload.item : item
+			);
 		default:
 			return state;
 	}

@@ -11,8 +11,15 @@ const CourseInfo = () => {
 	const authorsList = useSelector(getAuthors);
 
 	const params = useParams();
-	const { title, description, creationDate, duration, authors } =
-		coursesList.find(({ id }) => id === params.id);
+	const {
+		title = '',
+		description,
+		creationDate,
+		duration,
+		authors,
+	} = coursesList.find(({ id }) => id === params.id);
+
+	console.log(authors, authorsList);
 	return (
 		<div className='course-info'>
 			<Link to='/courses' className='back-link'>

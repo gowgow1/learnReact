@@ -9,7 +9,7 @@ import { service } from '../../services/services';
 import { useDispatch } from 'react-redux';
 
 import './index.css';
-import { loginUser } from '../../store/user/actionCreators';
+import { asyncLoginUser } from '../../store/user/thunk';
 
 const Login = () => {
 	const dispatch = useDispatch();
@@ -26,15 +26,14 @@ const Login = () => {
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		const { email = '', password = '' } = inputsValue;
-		const { successful, result, user } = await service.userLogin({
+		const { successful, result } = await service.userLogin({
 			email,
 			password,
 		});
 
 		if (successful) {
-			dispatch(loginUser(result, user));
+			dispatch(asyncLoginUser(result));
 			localStorage.setItem('token', result);
-			localStorage.setItem('name', user.name);
 			history.push('/courses');
 		} else {
 			alert('Invalid data');
