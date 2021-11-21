@@ -1,0 +1,62 @@
+.create-course {
+	padding: 15px 20px;
+	border: 2px solid lightskyblue;
+}
+
+.create-course .button{
+	padding: 5px 5px;
+	border-radius: 0;
+	border: 1px solid rgb(255, 0, 255);
+}
+
+.create-course .input {
+	margin: 0 0 15px;
+}
+
+.control {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+
+
+.text-aria {
+	width: 100%;
+	min-height: 200px;
+	margin-bottom: 15px;
+}
+
+.author-wrap {
+	display: flex;
+	column-gap: 50px;
+}
+
+
+.author-create, .author-choose {
+	flex: 1 1 auto;
+	width: 50%;
+	justify-content: center;
+}
+
+.author-name {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.duration-bar span {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 20px;
+	text-align: center;
+}
+
+ul {
+	padding-left: 0;
+}
+
+

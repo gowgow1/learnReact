@@ -1,0 +1,25 @@
+.course-info {
+	padding: 15px 20px;
+	border: 2px solid lightskyblue;
+}
+
+.back-link {
+	color: black;
+	text-decoration: none;
+}
+.back-link:hover {
+	text-decoration: underline;
+}
+
+.info-wrap {
+	display: flex;
+	column-gap: 40px;
+}
+
+.info-description {
+	width: 70%;
+}
+
+.info-credits {
+	width: 30%;
+}

@@ -1,0 +1,10 @@
+.search-bar {
+	display: flex;
+	text-align:center;
+	column-gap: 10px;
+}
+
+.search-bar .input {
+	border:2px solid lightsalmon;
+	outline: none;
+}
