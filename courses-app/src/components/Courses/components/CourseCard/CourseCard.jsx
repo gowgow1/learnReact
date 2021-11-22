@@ -36,14 +36,8 @@ const CourseCards = ({
 					<strong>Authors: </strong>
 					{author.join(', ')}
 				</div>
-				<div className='duration'>
-					<strong>Duration: </strong>
-					{timeFormat(duration)}
-				</div>
-				<div className='created'>
-					<strong>Created: </strong>
-					{created}
-				</div>
+				<div className='duration'>Duration: {timeFormat(duration)}</div>
+				<div className='created'>Created: {created}</div>
 				<div className='btn-wrap'>
 					<Button text='Show course' onClick={toCoursesPage} />
 					{role === 'admin' && <Button text='E' onClick={onEdit} />}

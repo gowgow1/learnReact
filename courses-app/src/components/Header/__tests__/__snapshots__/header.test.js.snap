@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing: <Header/> rendered without crushing 1`] = `
+<div>
+  <div
+    class="header"
+  >
+    <img
+      alt="logo"
+      class="logo"
+      src="react.svg"
+    />
+    <div
+      class="header-wrap"
+    >
+      <div
+        class="header-text"
+      >
+        Alex
+      </div>
+      <button
+        class="button"
+      >
+        logout
+      </button>
+    </div>
+  </div>
+</div>
+`;
