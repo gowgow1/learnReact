@@ -26,7 +26,7 @@ const CourseCards = ({
 	const onEdit = () => history.push(`/courses/update/${id}`);
 
 	return (
-		<div className='card'>
+		<div className='card' data-testid='card'>
 			<div className='card-content'>
 				<h2 className='title'>{title}</h2>
 				<div className='description'>{description}</div>

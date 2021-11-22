@@ -1,10 +1,10 @@
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from './components/Logo';
 import Button from '../common/Button';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './index.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../store/selectors';
 import { deleteUser } from '../../store/user/actionCreators';
 

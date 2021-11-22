@@ -1,7 +1,7 @@
 import './index.css';
 
-const Button = ({ text, onClick }) => (
-	<button onClick={onClick} className='button'>
+const Button = ({ text, onClick, dataTest }) => (
+	<button onClick={onClick} className='button' data-testid={dataTest}>
 		{text}
 	</button>
 );

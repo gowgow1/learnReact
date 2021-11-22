@@ -151,7 +151,11 @@ const CourseForm = () => {
 						onChange={addAuthorName}
 						value={authorName}
 					/>
-					<Button text='Create Author' onClick={updateAuthors} />
+					<Button
+						text='Create Author'
+						onClick={updateAuthors}
+						dataTest={'createAuthor'}
+					/>
 					<h2>Duration</h2>
 					<Input
 						placeholder='Enter duration in minutes...'
@@ -170,11 +174,12 @@ const CourseForm = () => {
 					<h2> Authors </h2>
 					<ul>
 						{currentAuthors.map(({ id, name }) => (
-							<li key={id} className='author-name'>
+							<li key={id} className='author-name' data-testid='authors'>
 								<div>{name}</div>
 								<Button
 									text='Add author'
 									onClick={(event) => onAddAuthor(event, id)}
+									dataTest='addAuthor'
 								/>
 							</li>
 						))}
@@ -183,11 +188,16 @@ const CourseForm = () => {
 					{choosenAuthors.length ? (
 						<ul>
 							{choosenAuthors.map(({ id, name }) => (
-								<li key={id} className='author-name'>
+								<li
+									key={id}
+									className='author-name'
+									data-testid='choosenAuthor'
+								>
 									<div>{name}</div>
 									<Button
 										text='Delete Author'
 										onClick={(event) => onRemoveAuthor(event, id)}
+										dataTest='deleteAuthor'
 									/>
 								</li>
 							))}

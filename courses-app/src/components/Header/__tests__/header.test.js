@@ -1,7 +1,7 @@
-import * as reactRedux from 'react-redux';
 import { Provider } from 'react-redux';
-
+import * as reactRedux from 'react-redux';
 import { render } from '@testing-library/react';
+
 import Header from '../Header';
 
 const mockedState = {

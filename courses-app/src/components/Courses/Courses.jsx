@@ -18,6 +18,7 @@ const Courses = () => {
 	const redirectToAddCourse = () => {
 		history.push('/courses/add');
 	};
+
 	const [filtredCourses, setCourses] = useState(coursesList);
 
 	useEffect(() => {
@@ -47,10 +48,14 @@ const Courses = () => {
 					searchElements={searchElements}
 				/>
 				{role === 'admin' ? (
-					<Button text='Add new course' onClick={redirectToAddCourse} />
+					<Button
+						text='Add new course'
+						onClick={redirectToAddCourse}
+						dataTest='add'
+					/>
 				) : null}
 			</div>
-			<div className='cards-wrap'>
+			<div className='cards-wrap' data-testid='cards-wrapper'>
 				{filtredCourses.map((course) => {
 					const { id, title, description, creationDate, duration, authors } =
 						course;

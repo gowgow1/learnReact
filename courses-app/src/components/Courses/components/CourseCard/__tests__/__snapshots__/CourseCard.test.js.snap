@@ -4,6 +4,7 @@ exports[`Course Card should render 1`] = `
 <div>
   <div
     class="card"
+    data-testid="card"
   >
     <div
       class="card-content"
