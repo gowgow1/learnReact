@@ -1,4 +1,5 @@
-export const ADD_COURSE = 'add_course';
-export const DELETE_COURSE = 'delete_course';
-export const INIT_COURSE_LIST = 'init_course_list';
+export const ADD_COURSE = 'addCourse';
+export const DELETE_COURSE = 'deleteCourse';
+export const INIT_COURSE_LIST = 'initCourseList';
 export const UPDATE_COURSE = 'updateCourse';
+export const GET_COURSES = 'getCourses';

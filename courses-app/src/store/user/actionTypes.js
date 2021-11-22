@@ -1,2 +1,2 @@
-export const DELETE_USER = 'delete_user';
-export const USER_LOGIN = 'user_login';
+export const DELETE_USER = 'deleteUser';
+export const USER_LOGIN = 'userLogin';

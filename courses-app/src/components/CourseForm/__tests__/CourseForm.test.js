@@ -36,8 +36,6 @@ jest.mock('../../../store/selectors', () => ({
 	getUser: jest.fn(),
 }));
 
-window.alert = jest.fn();
-
 const useDispatchSpyOn = jest.spyOn(reactRedux, 'useDispatch');
 
 beforeEach(() => {
