@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseForm should be rendered 1`] = `
+<div>
+  <form
+    class="create-course"
+  >
+    <div
+      class="control"
+    >
+      <div
+        class="input-wrap"
+      >
+        <label
+          for="title"
+        >
+          Title
+        </label>
+        <input
+          class="input"
+          id="title"
+          name="title"
+          placeholder="Enter Title"
+          type="text"
+          value=""
+        />
+      </div>
+      <button
+        class="button"
+      >
+        Create course
+      </button>
+    </div>
+    <label
+      for="ariaText"
+    >
+      Description
+    </label>
+    <textarea
+      class="text-aria"
+      id="ariaText"
+      minlength="2"
+      name="description"
+    >
+      Some text...
+    </textarea>
+    <div
+      class="author-wrap"
+    >
+      <div
+        class="author-create"
+      >
+        <h2>
+          Add author
+        </h2>
+        <div
+          class="input-wrap"
+        >
+          <label
+            for="authorInput"
+          >
+            Author name:
+          </label>
+          <input
+            class="input"
+            id="authorInput"
+            name="authorInput"
+            placeholder="Enter author name..."
+            type="text"
+            value=""
+          />
+        </div>
+        <button
+          class="button"
+          data-testid="createAuthor"
+        >
+          Create Author
+        </button>
+        <h2>
+          Duration
+        </h2>
+        <div
+          class="input-wrap"
+        >
+          <label
+            for="duration"
+          >
+            Duration
+          </label>
+          <input
+            class="input"
+            id="duration"
+            name="duration"
+            placeholder="Enter duration in minutes..."
+            type="number"
+            value="0"
+          />
+        </div>
+        <div
+          class="duration-bar"
+        >
+          Duration: 
+          <span>
+            00:00
+          </span>
+           hours
+        </div>
+      </div>
+      <div
+        class="author-choose"
+      >
+        <h2>
+           Authors 
+        </h2>
+        <ul>
+          <li
+            class="author-name"
+            data-testid="authors"
+          >
+            <div>
+              Vasiliy Dobkin
+            </div>
+            <button
+              class="button"
+              data-testid="addAuthor"
+            >
+              Add author
+            </button>
+          </li>
+          <li
+            class="author-name"
+            data-testid="authors"
+          >
+            <div>
+              Nicolas Kim
+            </div>
+            <button
+              class="button"
+              data-testid="addAuthor"
+            >
+              Add author
+            </button>
+          </li>
+          <li
+            class="author-name"
+            data-testid="authors"
+          >
+            <div>
+              Anna Sidorenko
+            </div>
+            <button
+              class="button"
+              data-testid="addAuthor"
+            >
+              Add author
+            </button>
+          </li>
+          <li
+            class="author-name"
+            data-testid="authors"
+          >
+            <div>
+              Valentina Larina
+            </div>
+            <button
+              class="button"
+              data-testid="addAuthor"
+            >
+              Add author
+            </button>
+          </li>
+        </ul>
+        <h2>
+          Course authors
+        </h2>
+        Author list is empty
+      </div>
+    </div>
+  </form>
+</div>
+`;

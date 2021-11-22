@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Courses Courses rendered 1`] = `
+<div>
+  <div
+    class="Courses-wrap"
+  >
+    <div
+      class="settings"
+    >
+      <div
+        class="search-bar"
+      >
+        <div
+          class="input-wrap"
+        >
+          <label
+            for="search"
+          />
+          <input
+            class="input"
+            id="search"
+            placeholder="Enter course name..."
+            type="text"
+            value=""
+          />
+        </div>
+        <button
+          class="button"
+        >
+          Search
+        </button>
+      </div>
+      <button
+        class="button"
+        data-testid="add"
+      >
+        Add new course
+      </button>
+    </div>
+    <div
+      class="cards-wrap"
+      data-testid="cards-wrapper"
+    >
+      <div
+        class="card"
+        data-testid="card"
+      >
+        <div
+          class="card-content"
+        >
+          <h2
+            class="title"
+          >
+            JavaScript
+          </h2>
+          <div
+            class="description"
+          >
+            Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum
+            has been the industry's standard dummy text ever since the
+            1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type
+            specimen book. It has survived
+            not only five centuries, but also the leap into electronictypesetting, remaining essentially u
+            nchanged.
+          </div>
+        </div>
+        <div
+          class="card-info"
+        >
+          <div
+            class="author"
+          >
+            <strong>
+              Authors: 
+            </strong>
+            Vasiliy Dobkin, Nicolas Kim
+          </div>
+          <div
+            class="duration"
+          >
+            Duration: 
+            02:40
+          </div>
+          <div
+            class="created"
+          >
+            Created: 
+            8/3/2021
+          </div>
+          <div
+            class="btn-wrap"
+          >
+            <button
+              class="button"
+            >
+              Show course
+            </button>
+            <button
+              class="button"
+            >
+              E
+            </button>
+            <button
+              class="button"
+            >
+              D
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="card"
+        data-testid="card"
+      >
+        <div
+          class="card-content"
+        >
+          <h2
+            class="title"
+          >
+            Angular
+          </h2>
+          <div
+            class="description"
+          >
+            Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum
+            has been the industry's standard dummy text ever since the
+            1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type
+            specimen book.
+          </div>
+        </div>
+        <div
+          class="card-info"
+        >
+          <div
+            class="author"
+          >
+            <strong>
+              Authors: 
+            </strong>
+            Anna Sidorenko, Valentina Larina
+          </div>
+          <div
+            class="duration"
+          >
+            Duration: 
+            03:30
+          </div>
+          <div
+            class="created"
+          >
+            Created: 
+            10/11/2020
+          </div>
+          <div
+            class="btn-wrap"
+          >
+            <button
+              class="button"
+            >
+              Show course
+            </button>
+            <button
+              class="button"
+            >
+              E
+            </button>
+            <button
+              class="button"
+            >
+              D
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
